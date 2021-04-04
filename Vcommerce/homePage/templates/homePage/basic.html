@@ -1,0 +1,113 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'homePage/css/style.css' %}">
+    
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+    </script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body  style="background-color:#f0f6ff;">
+    <header>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark" id="sticky-navbar">
+       
+            <div class="sidebar-button">
+                <button type="button" class="btn btn-dark " onclick="openMenu()">&#9776;</button>  
+            </div>
+            <a class="navbar-brand" href="{% url 'index' %}">V-Commerce</a>    
+            
+      
+            <div>
+                <form class="form-inline my-2 my-lg-0 mw-100" action={% url 'search_products' %}>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-filled-light my-2 mx-sm-0 py-3" type="submit" id="search_btn"></button>
+                    <button class="btn btn-filled-light my-2 mr-sm-0 ml-2 py-3" type="button" id="voice_btn" onclick="location.href='voice_command'"></button>
+                </form>
+            </div>
+            {% if request.user.is_authenticated %}
+            <span class="user-msg text-info px-2"> Hello, {{request.user}}</span>
+            <span class="user-msg">
+                <a href="{% url 'logout' %}" style="text-decoration: none;">logout</a>
+            </span>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <aside class="sidebar bg-white">
+        <div class="bg-muted">
+            <h3 class="p-2">Menu</h3>
+            <button class="btn btn-light sidebar-close-button" onclick="closeMenu()">x</button>
+        </div>
+        <ul style="list-style-type: none; padding-left: 10px;">
+            <li>
+                <a class="sidebar-item " href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a class="sidebar-item" href="{% url 'categories' %}">Categories</a>
+            </li>
+            <li>
+                <a class="sidebar-item" href="{% url 'checkout' %}">Checkout</a>
+            </li>
+           
+            
+            {% if request.user.is_authenticated %}
+            <li>
+                <a class="sidebar-item" href="{% url 'cart' %}" >Cart</a>
+            </li>
+            {% endif %}
+            {% if not request.user.is_authenticated or not 'Seller' in request.user.groups.all.0.name %}
+            <li>
+                <a class="sidebar-item" href="{% url 'sell' %}" >Sell on V-Commerce</a>
+            </li>
+            {% endif %}
+            <li>
+                <a class="sidebar-item" href="{% url 'acount' %}" >Acount</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li>
+                <a class="sidebar-item" href="{% url 'mkorders' %}">Orders</a>
+            </li>
+            {% endif %}
+          
+            {% if 'Seller' in request.user.groups.all.0.name %}
+            <li>
+                <a class="sidebar-item" href="{% url 'addProd' %}">Add Products</a>
+            </li>
+            {% endif %}
+            {% if 'Seller' in request.user.groups.all.0.name %}
+            <li>
+                <a class="sidebar-item" href="{% url 'deals' %}">Deals</a>
+            </li>
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+            <li>
+                <a class="sidebar-item"href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_staff %}
+            <li>
+                <a class="sidebar-item" href="http://127.0.0.1:8000/admin/">Admin</a>
+            </li>
+            {% endif %}
+        </ul>
+    </aside>
+    <main>
+        <div class="content">
+        {% block body %}{% endblock %}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+    <script src="{% static 'homePage/js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#search_btn{
+    background-image: url('../icons/search-24px.svg');
+    background-repeat: no-repeat;
+
+}
+#voice_btn{
+    background-image: url('../icons/settings_voice-24px.svg');
+    background-repeat: no-repeat;
+}
+#sticky-navbar{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+

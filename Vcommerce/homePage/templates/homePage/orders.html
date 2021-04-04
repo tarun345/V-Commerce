@@ -1,0 +1,53 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 bg-white">
+            <h3>My orders</h3>
+            <ul style="list-style-type: none; padding:0px">
+              
+                {% for i in orders %}
+                {% if i.get_cart_items %}
+                <li>id:{{i.id}}</li>
+                <li>ref_code:{{i.ref_code}}</li>
+                <li><p>products:</p>
+                    <ul style="list-style-type: none; padding:0px">
+                        {% for j in i.get_cart_items %}
+                        <li>
+                            {{j}}<br>
+                            quantity:{{j.quantity}}
+                            
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    Total Price: {{i.get_cart_total}}
+                </li>
+                <li>payment_status:{{i.payment_status}}</li>
+                <form action="{% url 'checkout' %}">
+                    <select name="pmode" id="pmode">
+                        <option value="co">Cash on Delivery</option>
+                        <option value="ca">Card</option>
+                        <option value="nb">Net Banking</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit">Proceed</button>
+                </form>
+                <li>payment-mode:{{i.payment_mode}}</li>
+                <li>delivery-status:{{i.delivery_status}}</li>
+                {% endif %}
+                {% if forloop.last and not i.get_cart_items %}
+                <p>no orders yet</p>
+                {% endif %}
+                {% endfor %}
+                <a class="btn primary btn" href="{% url 'index' %}">Add items</a>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+   
+{% endblock %}

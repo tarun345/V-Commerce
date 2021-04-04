@@ -1,0 +1,44 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container my-3">
+  <div class="raw">
+    <div class="col-5 bg-white">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <!-- <div class="form-group">
+          <label for="user_type">Login As:</label>
+          <select name="users" id="user_type">
+            <option value="cr" selected>Customer</option>
+            <option value="sr">Seller</option>
+            <option value="bo">Both</option>
+          </select>
+        </div> -->
+        <div class="form-group">
+          <label for="username">User Name:</label>
+          <input type="text" class="form-control" placeholder="Enter username" name="username" id="username" required>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" placeholder="Enter password" id="pwd" name="pwd" required>
+        </div>
+        <!-- <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+          </label>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form> 
+      <!-- <p>{{msg}}</p> -->
+      {% for message in messages %}
+        {{message}}
+      {% endfor %}
+      <P>
+        don't have an acount?<a href="{% url 'register' %}"> Register here</a>
+      </P>
+    </div>
+  </div>
+</div>
+
+   
+{% endblock %}

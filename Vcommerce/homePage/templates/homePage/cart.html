@@ -1,0 +1,46 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-8 bg-white">
+            <h3>{{orders}}</h3>
+            <ul style="list-style-type: none; padding:0px">
+                {% if orders.get_cart_items %}
+                <li>{{orders.Customer.name}}</li>
+                <li>{{orders.id}}</li>
+                <li><p>products:</p>
+                    <ul style="list-style-type: none; padding:0px">
+                        
+                        {% for i in orders.get_cart_items %}
+                        <li>
+                            {{i}}<a href="{% url 'removeItem' i.id%}">remove</a>
+                            <p>quantity:{{i.quantity}}</p>
+                            <form action="{% url 'updateItem' i.id %}">
+                            <input type="number" value="{{i.quantity}}" name="quantity"/>
+                            <button type="submit" value="submit">Update</button>
+                            </form>
+                            <p>Price for {{i.quantity}}: {{i.items_price}}</p>
+                        </li><br>
+                            {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    Total Price:{{orders.get_cart_total}}
+                </li>
+                <a class="btn btn-primary" href="{% url 'mkorders' %}">Buy</a>
+                {% else %}
+                        <p>Your cart is empty</p>
+                        {% endif %}
+                <a class="btn btn-primary" href="{% url 'index' %}">Add items</a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+  
+    
+    
+    
+    
+{% endblock %}

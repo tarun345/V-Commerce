@@ -1,0 +1,138 @@
+/* body{
+    background-color: #f7f7f7;
+} */
+main{
+    margin-top: 5rem;
+}
+/* navbar */
+#search_btn{
+    background-image: url('../icons/search-24px.svg');
+    background-repeat: no-repeat;
+
+}
+#voice_btn{
+    background-color: #ffffff;
+    background-image: url('../icons/settings_voice-24px.svg');
+    background-repeat: no-repeat;
+}
+#sticky-navbar{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+#fav_id{
+    background-image: url('../icons/favorite-24px.svg');
+    background-repeat: no-repeat;
+    padding-left: 28px;
+    padding-bottom: 8px;
+    padding-top: 0px;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+#cart_id{
+    background-image: url('../icons/shopping_cart-24px.svg');
+    background-repeat: no-repeat;
+    padding-left: 28px;
+    padding-bottom: 8px;
+    margin-top: 8px;
+    padding-top: 0px;
+    margin-right: 8px;
+
+}
+#user-msg{
+    color: #ffffff;
+}
+/* sidebar  */
+.sidebar{
+    position: fixed;
+    transform: translateX(-10rem);
+    width: 10rem;
+    /* background-color: #f0f0f0; */
+    margin-top: -1rem;
+    height: 100%;
+}
+.sidebar.open{
+    transform: translateX(0)
+}
+.sidebar h3{
+    display: inline;
+}
+.sidebar-close-button{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 6px;
+    padding-left: 6px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/* index */
+.col-md-3{
+    display: inline-block;
+    margin-left: -4px;    
+}
+.col-md-3 img{
+    width: 100%;
+    height: 300px;
+}
+.carousel-indicators .active{
+    background-color: blue;
+}
+.carousel-indicators{
+    bottom: 0px;
+    z-index: 1;
+}
+/* body .carousel-indicators li{
+background-color: blue;
+} */
+.carousel-control-prev {
+    left: -125px;
+}
+.carousel-control-next {
+    right: -125px;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    background-color: blue;
+}
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.card-text{
+    height: 200px;
+    background-attachment: scroll;
+    display: grid;
+}
+
+/* results */
+.listing{
+    width: 100%;
+}
+.lis-img-div{
+    /* width: 30%; */
+    display: inline-block;
+
+}
+.listing-img{
+    border-block: .1px;
+    display: inline-block;
+}
+.listing-body{
+    /* width: 40%; */
+    display: inline-block;
+    /* align-content: center; */
+    /* vertical-align: middle; */
+}
+
+/* shadow design  */
+
+.shadow-design{
+    box-shadow: 1px 1px #343a40;
+    /* border: 0.01px solid #343a40; */
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 3px;
+}

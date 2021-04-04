@@ -1,0 +1,29 @@
+{% extends 'homePage/basic.html' %}
+{% load static%}
+
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 bg-white">
+                <img src="{{prod.thumbnail.url}}" alt="image"/>
+                <h3>
+                    <i>&#8377</i> {{prod.price}}
+                </h3>
+                <p>
+                    {{prod.name}}
+                </p>
+                <p>
+                    {{prod.company}}
+                </p>
+                <p>
+                    {{prod.description}}
+                </p>
+               
+                <a class="btn btn-white" href="{% url 'mkorders' prod.id %}">Buy</a>
+                <a class="btn btn-white" href="{% url 'cart' prod.id %}">add to cart</a>
+                
+            </div>
+        </div>
+    </div>    
+{% endblock %}

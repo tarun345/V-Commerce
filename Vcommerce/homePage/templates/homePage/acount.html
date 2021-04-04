@@ -1,0 +1,23 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container my-3">
+    <div class="raw">
+      <div class="col-5 bg-white">
+          User Type:
+        {% for i in request.user.groups.all %}
+            
+            {% if 'Customer' in i.name %}
+            {{i.name}}
+                {% firstof 'true' as cust %}
+            {% endif %}
+            {% if 'Seller' in i.name %}
+            {{i.name}}
+                {% firstof 'true' as sel %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+            

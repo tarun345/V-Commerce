@@ -1,0 +1,31 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-10 bg-white">
+            {% if order.get_cart_items %}
+            order placed for
+            {{order}}
+            <ul style="list-style-type: none;">
+                <li>
+                    Delivery Status: {{order.delivery_status}}
+                </li>
+                <li>
+                    payment Status: {{order.payment_status}}
+                </li>
+                <li>
+                    Date: {{order.order_date}}
+                </li>
+            </ul>
+            {% else %}
+            <p>nothing to checkout</p>
+            {% endif %}
+            
+            
+            
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

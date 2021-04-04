@@ -1,0 +1,75 @@
+{% extends 'homePage/basic.html' %}
+{% load static %}
+
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        {% for prod, range, nSlides in allprod %}
+        <div class="col-12">
+            <h3>{{prod.0.company}}</h3>
+        <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
+            <!-- slideshow carousel-indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active" ></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}" ></li>
+                {% endfor %}
+            </ul>
+            <!-- carousel view slide show -->
+            <div class="carousel-inner no-padding">
+                
+                <div class="carousel-item active">
+                    <div class="col-xs-3 col-sm-3 col-md-3 mx-2 px-2 py-2">
+                        <div class="card bg-white" style="width: 18rem;">
+                            <img class="card-img-top" src="{{prod.0.thumbnail.url}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{prod.0.name}}</h5>
+                                <p class="card-text">{{prod.0.description}}</p>
+                                <a class="btn btn-primary" href="{% url 'product' prod.0.id %}">View</a>
+                                <a class="btn btn-white" href="{% url 'cart' prod.0.id %}">add to cart</a>
+
+
+                            </div>
+                        </div>
+                    </div> 
+                    {% for i in prod|slice:"1:" %}
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mx-2 px-2">
+                        <div class="card bg-white" style="width: 18rem;">
+                            <img class="card-img-top" src="{{i.thumbnail.url}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.name}}</h5>
+                                <p class="card-text">{{i.description}}</p>
+                                <a class="btn btn-primary" href="{% url 'product' i.id %}">View</a>
+                                <a class="btn btn-white" href="{% url 'cart' i.id %}">add to cart</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter is 2 %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% if forloop.counter|add:1|divisibleby:3 and forloop.counter > 2 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+    
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev ml-5" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next mr-5" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+        </div>
+    {% endfor %}
+    </div> 
+</div>
+<script src="{% static 'homePage/js/cart.js' %}"></script>
+{% endblock %}

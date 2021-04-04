@@ -1,0 +1,16 @@
+{% extends 'homePage/basic.html' %}
+{% block title %}V-commerce{% endblock %}
+{% block body %}
+<div class="container my-3">
+    <div class="raw">
+      <div class="col-5 bg-white">
+        <form action="" method="POST">
+          {% csrf_token %}
+          {{form.as_p}}
+          <button class="btn btn-primary" type="submit">Add Product</button>
+        </form> 
+        {{form.errors}}
+        </div>
+    </div>
+</div>
+{% endblock %}
